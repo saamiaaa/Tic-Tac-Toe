@@ -1,0 +1,285 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+h1 {
+    margin-top: 23px;
+    font-size: 70px;
+    color: #b74c91;
+}
+
+h2 {
+    color: #6f347c;
+    font-size: 30px;
+}
+
+
+body {
+    margin: 0;
+    min-height: 100vh;
+
+    background-image: url("./background.png");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-position: center top;
+
+    text-align: center;
+    font-family: "VT323", monospace;
+}
+
+
+
+.container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 50px;
+}
+
+.game {
+    height: 60vmin;
+    width: 60vmin;
+
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    gap: 14px;
+    gap: 4vmin;
+    margin: 0 auto;
+}
+
+
+.box {
+    width: 18vmin;
+    height: 18vmin;
+    font-size: 10vmin;
+
+    background: linear-gradient(
+        145deg,
+        #fff0fc,
+        #ead5ff,
+        #f9dff4
+    );
+
+    border: 3px solid #c69aef;
+    border-radius: 12px;
+    
+    box-shadow:
+        4px 4px 0 #b68cdd,
+        inset 3px 3px 0 white;
+
+    font-weight: bold;
+    font-family: inherit;
+    color: #e783c4;
+
+    cursor: pointer;
+    transition: 0.2s ease;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.box:hover {
+    transform: translateY(-3px);
+    box-shadow:
+        4px 7px 0 #b68cdd,
+        0 0 12px #e9baf7;
+}
+
+.box:active {
+    transform: translateY(2px);
+    box-shadow: 2px 2px 0 #b68cdd;
+}
+
+.resetButton {
+    margin-top: 50px;
+    padding: 12px 35px;
+
+    background: linear-gradient(
+        135deg,
+        #f8c9e8,
+        #e8c9fa
+    );
+
+    border: 2px solid #c28bdc;
+    border-radius: 15px;
+
+    box-shadow:
+        4px 4px 0 #b68cdd,
+        inset 2px 2px 0 #fff0fc;
+
+    color: #87549e;
+    font-family: "VT323", monospace;
+    font-size: 25px;
+    font-weight: bold;
+
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.resetButton:hover {
+    background: linear-gradient(
+        135deg,
+        #fbd8ef,
+        #dfc0f7
+    );
+
+    transform: translateY(-3px);
+
+    box-shadow:
+        4px 7px 0 #b68cdd,
+        0 0 12px #efc4ed;
+}
+
+.resetButton:active {
+    transform: translateY(2px);
+    box-shadow: 2px 2px 0 #b68cdd;
+}
+
+.hidden {
+    display: none;
+}
+
+.newButton {
+    margin-top: 15px;
+    padding: 12px 35px;
+    background: linear-gradient(
+        135deg,
+        #f8c9e8,
+        #e8c9fa
+    );
+    border: 2px solid #c28bdc;
+    border-radius: 15px;
+    box-shadow:
+        4px 4px 0 #b68cdd,
+        inset 2px 2px 0 #fff0fc;
+    color: #87549e;
+    font-family: "VT323", monospace;
+    font-size: 25px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.newButton:hover {
+    background: linear-gradient(
+        135deg,
+        #fbd8ef,
+        #dfc0f7
+    );
+
+    transform: translateY(-3px);
+
+    box-shadow:
+        4px 7px 0 #b68cdd,
+        0 0 12px #efc4ed;
+}
+
+.newButton:active {
+    transform: translateY(2px);
+    box-shadow: 2px 2px 0 #b68cdd;
+}
+
+
+/* Winner message */
+
+.message {
+    position: relative;
+    margin-top: 35px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+.message p {
+    font-size: 55px;
+    color: #b74c91;
+    font-weight: bold;
+}
+
+/* Winner message animation */
+
+.message:not(.hidden) {
+    animation: winnerPop 0.6s ease forwards;
+}
+
+@keyframes winnerPop {
+    0% {
+        opacity: 0;
+        transform: translateY(20px) scale(0.8);
+    }
+
+    70% {
+        transform: translateY(-5px) scale(1.05);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.game {
+    transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.game.fade-out {
+    opacity: 0;
+    transform: scale(0.9);
+}
+
+/* Confetti */
+
+#confetti {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 100;
+}
+
+.confetti-piece {
+    position: absolute;
+    top: -20px;
+    width: 10px;
+    height: 15px;
+    border-radius: 3px;
+    animation: confettiFall 2.5s ease-in forwards;
+}
+
+@keyframes confettiFall {
+    0% {
+        transform: translate(0, -10vh) rotate(0deg);
+        opacity: 1;
+    }
+
+    100% {
+        transform: translate(var(--drift), 110vh) rotate(720deg);
+        opacity: 0;
+    }
+}
+
+.message.hidden {
+    display: none;
+}
+
+.winningBunny {
+    width: 76vmin;      
+    height: auto;          
+    margin-bottom: -10px;   
+    animation: bunnyWave 0.8s ease-in-out infinite alternate 0.6s; 
+}
+
+@keyframes bunnyWave {
+    0% {
+        transform: translateY(0) rotate(-3deg);
+    }
+    100% {
+        transform: translateY(-5px) rotate(3deg);
+    }
+}
