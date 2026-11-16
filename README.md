@@ -1,4 +1,4 @@
-# Tic Tac Toe 💗
+# Tic Tac Toe ฅ^>⩊<^ ฅ
 
 A fun and interactive Tic Tac Toe game built using **HTML, CSS, and JavaScript**. This project features a cute, playful interface with a clean design and engaging gameplay.
 
